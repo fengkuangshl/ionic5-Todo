@@ -1,0 +1,20 @@
+<ion-header translucent>
+    <ion-toolbar color="success">
+        <ion-buttons slot="start">
+            <ion-menu-button auto-hide="false"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Todo-List
+        </ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="addItem()">
+                <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+
+</ion-header>
+<ion-content>
+    <todo-list [todos]="items" (toggle)="toggleCompletion($event)" (toViewItem)="viewItem($event)" (deletelTodo)="removeTodo($event)"> </todo-list>
+</ion-content>

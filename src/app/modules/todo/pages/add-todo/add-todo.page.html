@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-toolbar color="success">
+        <ion-title>
+            Add Todo
+        </ion-title>
+        <ion-buttons end>
+            <ion-button ion-button icon-only (click)="close()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <input-box titlePlaceholder='New Todo Title' descriptionPlaceholder='New Todo description' buttonLabel='Add' (inputText)="addTodo($event)"></input-box>
+</ion-content>
