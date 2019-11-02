@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavParams } from '@ionic/angular';
 import {Todo} from '../../model/todo';
 import { ModalController, NavController } from '@ionic/angular';
 
@@ -9,7 +10,9 @@ import { ModalController, NavController } from '@ionic/angular';
 })
 export class AddTodoPage implements OnInit {
 
-  constructor(public modalCtrl: ModalController) { }
+  constructor(public modalCtrl: ModalController, public navParams: NavParams) {
+    console.log(this.navParams);
+  }
 
   ngOnInit() {
   }
