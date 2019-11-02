@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AddTodoPage } from '../pages/add-todo/add-todo.page';
+import {TodoService} from '../services/todo.service';
 
 import {Todo} from '../model/todo';
 @Component({
@@ -11,11 +12,13 @@ import {Todo} from '../model/todo';
 })
 export class TodoHomeComponent implements OnInit {
   public items: Todo[] = [];
-  constructor(public router: Router, public navCtrl: NavController, public modalCtrl: ModalController) {
-    for (let i = 0 ; i < 10; i++) {
-      const todo: Todo =  new Todo(i + '', 'this todo title' + i);
-      this.items.push(todo);
-    }
+  constructor(public router: Router, public navCtrl: NavController, public modalCtrl: ModalController,
+              public todoService: TodoService) {
+    this.todoService.getTodoList().then(todos => {
+      if (todos) {
+        this.items = JSON.parse(todos);
+      }
+    });
   }
 
   ngOnInit() {}
@@ -24,16 +27,13 @@ export class TodoHomeComponent implements OnInit {
     const addModal = await this.modalCtrl.create({
       component: AddTodoPage
     });
-    // addModal.onDidDismiss((item) => {
-    //   if (item) {
-    //     this.addTodo(item);
-    //   }
-    // });
-    // const item: any = await addModal.onWillDismiss();
-    // if (item) {
-    //   this.addTodo(item);
-    // }
-    return addModal.present();
+    await addModal.present();
+    const item: any = await addModal.onDidDismiss();
+    console.log(item);
+    if (item && item.data) {
+      this.items.push(item.data);
+      this.todoService.saveTodo(item.data);
+    }
   }
 
 }

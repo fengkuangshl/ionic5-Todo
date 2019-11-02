@@ -14,12 +14,10 @@ export class AddTodoPage implements OnInit {
   ngOnInit() {
   }
   addTodo(todo: Todo) {
-    // let todo : Todo = new Todo(title,description);
-    // this.view.dismiss(todo);
     this.modalCtrl.dismiss(todo);
   }
   close() {
-    this.modalCtrl.dismiss();
+    this.modalCtrl.dismiss(null);
   }
 
 }
