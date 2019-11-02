@@ -26,8 +26,8 @@ export class TodoService {
     this.storageService.saveDatas(this.key, todos);
   }
 
-  updateTodo(todo: Todo): void {
-    this.getTodoList().then((qtodo) => {
+  updateTodo(todo: Todo): Promise<Todo[]> {
+    return this.getTodoList().then((qtodo) => {
       let todos = [];
       if (qtodo) {
         todos = JSON.parse(qtodo);
@@ -38,6 +38,9 @@ export class TodoService {
       newTodo.description = todo.description;
       newTodo.lastUpdateDate = new Date();
       this.saveTodo(todos);
+      return new Promise(resolve => {
+        resolve(todos);
+      });
     });
   }
 }

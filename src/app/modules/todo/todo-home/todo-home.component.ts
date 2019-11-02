@@ -3,6 +3,7 @@ import { ModalController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AddTodoPage } from '../pages/add-todo/add-todo.page';
 import { TodoService } from '../services/todo.service';
+import { EventService } from '../../../services/event.service';
 
 import { Todo } from '../model/todo';
 @Component({
@@ -13,15 +14,20 @@ import { Todo } from '../model/todo';
 export class TodoHomeComponent implements OnInit {
   public items: Todo[] = [];
   constructor(public router: Router, public navCtrl: NavController, public modalCtrl: ModalController,
-              public todoService: TodoService ) {
+              public todoService: TodoService, public eventService: EventService) {
+    this.eventService.event.on('refreshTodoList', () => {
+      this.getTodoList();
+    });
+  }
+  getTodoList() {
     this.todoService.getTodoList().then(todos => {
       if (todos) {
           this.items = JSON.parse(todos);
       }
     });
   }
-
   ngOnInit() {
+    this.getTodoList();
   }
   // ionViewWillEnter() {
   //   this.todoService.getTodoList().then(todos => {

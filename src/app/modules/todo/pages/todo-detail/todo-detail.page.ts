@@ -5,6 +5,7 @@ import { TodoService } from '../../services/todo.service';
 import {  FormBuilder, Validators, FormGroup } from '@angular/forms';
 import {  ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
+import { EventService } from '../../../../services/event.service';
 @Component({
   selector: 'app-todo-detail',
   templateUrl: './todo-detail.page.html',
@@ -27,8 +28,8 @@ export class TodoDetailPage implements OnInit {
       required: 'Password is required.'
     }
   };
-  constructor(public router: Router, public navCtrl: NavController, public todoService: TodoService, private fb: FormBuilder, 
-              public activeRoute: ActivatedRoute) {
+  constructor(public router: Router, public navCtrl: NavController, public todoService: TodoService, private fb: FormBuilder,
+              public activeRoute: ActivatedRoute, public eventService: EventService) {
     this.activeRoute.params.subscribe((params: Params) => {
       this.todoService.getTodoList().then(qtodo => {
         let todos = [];
@@ -53,8 +54,11 @@ export class TodoDetailPage implements OnInit {
   }
   public updateTodo() {
     this.todo.completed = false;
-    this.todoService.updateTodo(this.todo);
-    this.router.navigate(['/home']);
+    this.todoService.updateTodo(this.todo).then(() => {
+      this.router.navigate(['/home']).then(() => {
+        this.eventService.event.emit('refreshTodoList');
+      });
+    });
   }
 
   buildForm(): void {
