@@ -53,6 +53,14 @@ export class TodoHomeComponent implements OnInit {
   //   });
   // }
 
+  guid2() {
+    function S4() {
+        // tslint:disable-next-line:no-bitwise
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    }
+    return (S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4());
+  }
+
   async addItem() {
     const addModal = await this.modalCtrl.create({
       component: AddTodoPage
@@ -61,14 +69,16 @@ export class TodoHomeComponent implements OnInit {
     const item: any = await addModal.onDidDismiss();
     console.log(item);
     if (item && item.data) {
-      if (this.items.length === 0) {
-        item.data.id = 1;
-      } else {
-        item.data.id = this.items[this.items.length - 1].id + 1;
-      }
+      // if (this.items.length === 0) {
+      //   item.data.id = 1;
+      // } else {
+      //   item.data.id = this.items[this.items.length - 1].id + 1;
+      // }
+      item.data.id = this.guid2();
       this.items.push(item.data);
-      this.todoService.saveTodo(this.items);
-      this.getTodoList();
+      this.todoService.saveTodo(this.items).then(() => {
+        this.getTodoList();
+      });
     }
   }
 

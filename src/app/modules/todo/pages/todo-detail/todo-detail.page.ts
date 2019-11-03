@@ -36,7 +36,7 @@ export class TodoDetailPage implements OnInit {
         if (qtodo) {
           todos = JSON.parse(qtodo);
           todos.forEach(todo => {
-            if (todo.id + '' === params.id) {
+            if (todo.id  === params.id) {
                this.todo = todo;
                console.log(this.todo);
             }

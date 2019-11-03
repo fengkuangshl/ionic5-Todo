@@ -2,7 +2,7 @@
  * Todo model
  */
 export class Todo {
-    id: number;
+    id: string;
     title: string;   // 标题
     description: string; // 内容
     completed = false; // 是否完成

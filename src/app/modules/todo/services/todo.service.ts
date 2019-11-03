@@ -22,8 +22,12 @@ export class TodoService {
    * 保存Todo列表
    * @param todos todo列表
    */
-  saveTodo(todos: Todo[]): void {
-    this.storageService.saveDatas(this.key, todos);
+  saveTodo(todos: Todo[]): Promise<Todo[]> {
+    return this.storageService.saveDatas(this.key, todos).then(() => {
+      return new Promise(resolve => {
+        resolve(todos);
+      });
+    });
   }
 
   updateTodo(todo: Todo): Promise<Todo[]> {

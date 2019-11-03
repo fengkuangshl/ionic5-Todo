@@ -18,16 +18,16 @@ export class StorageService {
    * 保存Todo列表
    * @param todos todo列表
    */
-  saveDatas(key: string, datas: any[]): void {
+  saveDatas(key: string, datas: any[]): Promise<any> {
     const newData = JSON.stringify(datas);
-    this.storage.set(key, newData);
+    return this.storage.set(key, newData);
   }
 
-  saveData(key: string, data: any): void {
+  saveData(key: string, data: any): Promise<any> {
     const newData = JSON.stringify(data);
-    this.storage.set(key, newData);
+    return  this.storage.set(key, newData);
   }
-  removeData(key: string): void {
-    this.storage.remove(key);
+  removeData(key: string): Promise<any> {
+    return this.storage.remove(key);
   }
 }
