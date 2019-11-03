@@ -24,7 +24,7 @@ export class TodoListComponent implements OnInit {
 
   }
   viewItem(todo: Todo) {
-    this.toViewItem.emit(todo);
+      this.toViewItem.emit(todo);
   }
   async removeTodo(todo: Todo) {
     const alert = await this.alertController.create({

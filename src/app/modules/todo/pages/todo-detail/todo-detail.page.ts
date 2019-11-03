@@ -50,7 +50,9 @@ export class TodoDetailPage implements OnInit {
   }
 
   enableEdit(isEdit: boolean) {
-    this.isEdit = isEdit;
+    if (this.todo.completed === false) {
+      this.isEdit = isEdit;
+    }
   }
   public updateTodo() {
     this.todo.completed = false;
