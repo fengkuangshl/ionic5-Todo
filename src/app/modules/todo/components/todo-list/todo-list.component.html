@@ -6,8 +6,8 @@
                     <input type="checkbox" [checked]="todo.completed" (change)="toggleCompletion(index)">
                 </ion-col>
                 <ion-col (click)="viewItem(todo)">
-                    <span>{{todo.title}}</span>
-                    <span>&nbsp;&nbsp;{{todo.lastUpdateDate}}</span>
+                    <span>{{todo.title|contentSubstring:20}}</span>
+                    <span>&nbsp;&nbsp;{{todo.lastUpdateDate|date}}</span>
                 </ion-col>
             </ion-row>
         </ion-item>

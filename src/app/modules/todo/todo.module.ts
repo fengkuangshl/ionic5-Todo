@@ -8,13 +8,19 @@ import { TodoHomeComponent } from './todo-home/todo-home.component';
 import { TodoListComponent } from '../todo/components/todo-list/todo-list.component';
 import { AddTodoPage } from '../todo/pages/add-todo/add-todo.page';
 import { InputBoxComponent } from './components/input-box/input-box.component';
+import { ContentSubstringPipe } from '../../pipes/content-substring.pipe';
+import { DatePipe } from '../../pipes/date.pipe';
+import {TodoDetailPage} from './pages/todo-detail/todo-detail.page';
 
 @NgModule({
   declarations: [
     TodoHomeComponent,
     TodoListComponent,
     AddTodoPage,
-    InputBoxComponent
+    InputBoxComponent,
+    ContentSubstringPipe,
+    DatePipe,
+    TodoDetailPage
   ],
   imports: [
     CommonModule,
