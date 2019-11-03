@@ -11,9 +11,9 @@ npm install--save eventemitter3<br>
 安装步骤：<br>
 1、clone或download本地<br>
 2、进入本地目录如:cd ionic5-Todo<br>
-3、安装依赖：npm install 或 cnpm install
+3、安装依赖：npm install 或 cnpm install<br>
 4、安装stroage:ionic cordova plugin add cordova-sqlite-storage<br>
                npm install --save @ionic/storage<br>
 5、安装eventemitter3：npm install--save eventemitter3<br>
-6、运行效果：ionic serve
+6、运行效果：ionic serve<br>
 
