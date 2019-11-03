@@ -32,11 +32,14 @@ export class TodoService {
       if (qtodo) {
         todos = JSON.parse(qtodo);
       }
-      const newTodo: Todo = todos[todo.id - 1];
-      newTodo.completed = todo.completed;
-      newTodo.title = todo.title;
-      newTodo.description = todo.description;
-      newTodo.lastUpdateDate = new Date();
+      todos.forEach(t => {
+        if (todo.id === t.id) {
+          t.completed = todo.completed;
+          t.title = todo.title;
+          t.description = todo.description;
+          t.lastUpdateDate = new Date();
+        }
+      });
       this.saveTodo(todos);
       return new Promise(resolve => {
         resolve(todos);

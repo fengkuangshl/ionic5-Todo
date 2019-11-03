@@ -54,6 +54,7 @@ export class TodoDetailPage implements OnInit {
   }
   public updateTodo() {
     this.todo.completed = false;
+    this.isEdit = false;
     this.todoService.updateTodo(this.todo).then(() => {
       this.router.navigate(['/home']).then(() => {
         this.eventService.event.emit('refreshTodoList');

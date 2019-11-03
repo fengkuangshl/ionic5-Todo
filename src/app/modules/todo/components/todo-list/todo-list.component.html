@@ -1,20 +1,20 @@
 <ion-list>
     <ion-item-sliding *ngFor="let todo of todos;let index = index" [class.completed]="todo.completed">
         <ion-item class="grid-basic-page">
-            <ion-row>
-                <ion-col size="1">
+            <ion-row class="ion-row">
+                <ion-col size="1" size-md>
                     <input type="checkbox" [checked]="todo.completed" (change)="toggleCompletion(index)">
                 </ion-col>
                 <ion-col (click)="viewItem(todo)">
-                    <span>{{todo.title|contentSubstring:20}}</span>
+                    <span>{{todo.title|contentSubstring:13}}</span>
                     <span>&nbsp;&nbsp;{{todo.lastUpdateDate|date}}</span>
                 </ion-col>
             </ion-row>
         </ion-item>
         <ion-item-options>
-            <button ion-button color="danger" (click)="removeTodo(todo)" icon-left>
-            <ion-icon name="remove-circle"></ion-icon>
-        </button>
+            <ion-button color="danger" (click)="removeTodo(todo)" icon-left>
+                <ion-icon name="remove-circle"></ion-icon>
+            </ion-button>
 
         </ion-item-options>
     </ion-item-sliding>

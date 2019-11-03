@@ -45,7 +45,11 @@ export class TodoHomeComponent implements OnInit {
     const item: any = await addModal.onDidDismiss();
     console.log(item);
     if (item && item.data) {
-      item.data.id = this.items.length + 1;
+      if (this.items.length === 0) {
+        item.data.id = 1;
+      } else {
+        item.data.id = this.items[this.items.length - 1].id + 1;
+      }
       this.items.push(item.data);
       this.todoService.saveTodo(this.items);
     }
@@ -64,7 +68,10 @@ export class TodoHomeComponent implements OnInit {
   }
 
   removeTodo(todo: Todo) {
-    this.items.splice(todo.id - 1, 1);
-    this.todoService.saveTodo(this.items);
+    const index = this.items.indexOf(todo);
+    if (index > -1) {
+      this.items.splice(index, 1);
+      this.todoService.saveTodo(this.items);
+    }
   }
 }
