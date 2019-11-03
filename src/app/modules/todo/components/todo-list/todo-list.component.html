@@ -7,7 +7,7 @@
                 </ion-col>
                 <ion-col (click)="viewItem(todo)">
                     <span>{{todo.title|contentSubstring:13}}</span>
-                    <span>&nbsp;&nbsp;{{todo.lastUpdateDate|date}}</span>
+                    <span>&nbsp;&nbsp;{{todo.createDate|date}}</span>
                 </ion-col>
             </ion-row>
         </ion-item>

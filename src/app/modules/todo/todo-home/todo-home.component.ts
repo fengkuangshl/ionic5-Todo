@@ -6,6 +6,7 @@ import { TodoService } from '../services/todo.service';
 import { EventService } from '../../../services/event.service';
 
 import { Todo } from '../model/todo';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 @Component({
   selector: 'todo-home',
   templateUrl: './todo-home.component.html',
@@ -22,7 +23,22 @@ export class TodoHomeComponent implements OnInit {
   getTodoList() {
     this.todoService.getTodoList().then(todos => {
       if (todos) {
-          this.items = JSON.parse(todos);
+          const  ts = JSON.parse(todos);
+          ts.sort((a: Todo, b: Todo) => {
+            if (a.completed < b.completed) {
+                return -1;
+            }
+            if (a.completed === b.completed) {
+              if (a.createDate > b.createDate) {
+                return -1;
+              } else {
+                return 1;
+              }
+            }
+            return 0;
+
+          });
+          this.items = ts;
       }
     });
   }
@@ -57,7 +73,9 @@ export class TodoHomeComponent implements OnInit {
 
   toggleCompletion(todo: Todo) {
     todo.completed = !todo.completed;
-    this.todoService.updateTodo(todo);
+    this.todoService.updateTodo(todo).then(() => {
+      this.getTodoList();
+    });
   }
   viewItem(todo: Todo) {
     // get传值
