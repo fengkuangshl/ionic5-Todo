@@ -25,13 +25,19 @@
     <form [formGroup]="todoForm" (ngSubmit)="updateTodo()" [class.todo-edit-show]="isEdit" [class.todo-edit-hide]="!isEdit">
         <ion-list>
             <ion-item>
-                <ion-label floating>Title</ion-label>
+                <ion-label position="floating">Title</ion-label>
                 <ion-input type="text" formControlName="title" [(ngModel)]="todo.title" value="{{todo.title}}"></ion-input>
             </ion-item>
+            <div *ngIf="formErrors.name" class="alert alert-danger" invalid>
+                {{ formErrors.title }}
+            </div>
             <ion-item>
-                <ion-label floating>Description</ion-label>
+                <ion-label position="floating">Description</ion-label>
                 <ion-textarea rows="3" type="text" [(ngModel)]="todo.description" formControlName="description" value="{{todo.description}}"></ion-textarea>
             </ion-item>
+            <div *ngIf="formErrors.name" class="alert alert-danger" invalid>
+                {{ formErrors.description }}
+            </div>
         </ion-list>
         <div class="ion-padding">
             <ion-button type="submit" [disabled]="!todoForm.valid" expand="block" block>Update</ion-button>

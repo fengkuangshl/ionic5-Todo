@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 import { Todo } from '../../model/todo';
 
@@ -13,7 +14,7 @@ export class TodoListComponent implements OnInit {
   @Output() toggle = new EventEmitter<Todo>();
   @Output() toViewItem = new EventEmitter<Todo>();
   @Output() deletelTodo = new EventEmitter<Todo>();
-  constructor() { }
+  constructor(public alertController: AlertController) { }
 
   ngOnInit() { }
 
@@ -25,8 +26,27 @@ export class TodoListComponent implements OnInit {
   viewItem(todo: Todo) {
     this.toViewItem.emit(todo);
   }
-  removeTodo(todo: Todo) {
-    this.deletelTodo.emit(todo);
+  async removeTodo(todo: Todo) {
+    const alert = await this.alertController.create({
+      header: '请确认!',
+      message: '确认要删除' + todo.title + '吗？',
+      buttons: [
+        {
+          text: '取消',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: delete');
+          }
+        }, {
+          text: '确定',
+          handler: () => {
+            this.deletelTodo.emit(todo);
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
 }
