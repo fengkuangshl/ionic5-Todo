@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { AddTodoPage } from '../pages/add-todo/add-todo.page';
-import { TodoService } from '../services/todo.service';
-import { EventService } from '../../../services/event.service';
+import { AddTodoPage } from '../add-todo/add-todo.page';
+import { TodoService } from '../../services/todo.service';
+import { EventService } from '../../../../services/event.service';
 
-import { Todo } from '../model/todo';
+import { Todo } from '../../model/todo';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 @Component({
   selector: 'todo-home',
@@ -68,6 +68,7 @@ export class TodoHomeComponent implements OnInit {
       }
       this.items.push(item.data);
       this.todoService.saveTodo(this.items);
+      this.getTodoList();
     }
   }
 

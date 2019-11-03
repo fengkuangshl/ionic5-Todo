@@ -1,6 +1,6 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TodoHomeComponent } from './todo-home/todo-home.component';
+import { TodoHomeComponent } from './pages/todo-home/todo-home.component';
 import {TodoDetailPage} from './pages/todo-detail/todo-detail.page';
 
 const routes: Routes = [
