@@ -6,7 +6,7 @@ import { TodoService } from '../../services/todo.service';
 import { EventService } from '../../../../services/event.service';
 
 import { Todo } from '../../model/todo';
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+
 @Component({
   selector: 'todo-home',
   templateUrl: './todo-home.component.html',

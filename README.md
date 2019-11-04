@@ -14,6 +14,6 @@ npm install--save eventemitter3<br>
 3、安装依赖：npm install 或 cnpm install<br>
 4、安装stroage:ionic cordova plugin add cordova-sqlite-storage<br>
                npm install --save @ionic/storage<br>
-5、安装eventemitter3：npm install--save eventemitter3<br>
+5、安装eventemitter3：npm install --save eventemitter3<br>
 6、运行效果：ionic serve<br>
 
