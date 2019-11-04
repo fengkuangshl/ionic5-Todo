@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -11,23 +12,35 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
 
-  public appPages = [
-    {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    }
-  ];
+public appPages = [
+  {
+    title: 'My Todo List',
+    url: '/home'
+  },
+  {
+    title: 'My QR Code',
+    url: '/list'
+  },
+  {
+    title: 'Gesture Password',
+    url: '/list'
+  },
+  {
+    title: 'Account Manager',
+    url: '/list'
+  },
+  {
+    title: 'Settings',
+    url: '/list'
+  }
+  
+];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private actionSheetController: ActionSheetController
   ) {
     this.initializeApp();
   }
@@ -37,5 +50,24 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+  async  logOut () {
+    const asLogOut = await this.actionSheetController.create({
+      header: '退出后不会删除任何历史数据，下次登录依然可以使用',
+      buttons: [{
+        text: 'LogOut',
+        role: 'destructive',
+        handler: () => {
+          console.log('Delete clicked');
+        }
+      }, {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await asLogOut.present();
   }
 }
