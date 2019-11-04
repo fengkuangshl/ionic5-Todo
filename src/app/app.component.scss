@@ -1,15 +1,29 @@
-.i-c-c{
+.i-c-c {
     padding: 0px;
     margin: 0px;
-    border-radius:0px;
+    border-radius: 0px;
 }
-.i-list{
+
+.i-list {
     margin-top: 32px;
 }
 
 ion-content {
     --background: #e8e8e8;
 }
-.i-list-margin-bottom{
+
+.i-list-margin-bottom {
     margin-bottom: 0px;
+}
+
+.headChoice {
+    .action-sheet-wrapper {
+        .action-sheet-container {
+            .action-sheet-group {
+                .action-sheet-title {
+                    border-bottom: 1px solid #ece8e8;
+                }
+            }
+        }
+    }
 }
