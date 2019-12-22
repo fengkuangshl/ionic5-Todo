@@ -33,7 +33,6 @@ public appPages = [
     title: 'Settings',
     url: '/list'
   }
-  
 ];
 
   constructor(
@@ -51,10 +50,10 @@ public appPages = [
       this.splashScreen.hide();
     });
   }
-  async  logOut () {
+  async  logOut() {
     const asLogOut = await this.actionSheetController.create({
-      header: '退出后不会删除任何历史数据，下次登录依然可以使用',
-      cssClass:'headChoice',
+      header: 'logout will not delete any data,you can still log in with this account',
+      cssClass: '',
       buttons: [{
         text: 'LogOut',
         role: 'destructive',
