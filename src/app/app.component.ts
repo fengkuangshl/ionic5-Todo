@@ -57,9 +57,9 @@ public appPages = [
       this.splashScreen.hide();
       this.authenticationService.authenticationState.subscribe(state => {
         console.log('Auth changed:', state);
-        this.menu.enable(true);
+        this.menu.swipeEnable(false);
         if (state === AuthenticationStatus.LOING ) {
-          this.menu.enable(false);
+          this.menu.swipeEnable(false);
           this.nav.navigateForward('user');
         } else {
           this.nav.navigateForward(['home']);
