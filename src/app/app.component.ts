@@ -7,6 +7,7 @@ import { ActionSheetController } from '@ionic/angular';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthenticationStatus } from './enums/authentication-status.enum';
 import { NavController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +45,8 @@ public appPages = [
     private statusBar: StatusBar,
     private actionSheetController: ActionSheetController,
     private authenticationService: AuthenticationService,
-    private nav: NavController
+    private nav: NavController,
+    private menu: MenuController
   ) {
     this.initializeApp();
   }
@@ -55,7 +57,9 @@ public appPages = [
       this.splashScreen.hide();
       this.authenticationService.authenticationState.subscribe(state => {
         console.log('Auth changed:', state);
+        this.menu.enable(true);
         if (state === AuthenticationStatus.LOING ) {
+          this.menu.enable(false);
           this.nav.navigateForward('user');
         } else {
           this.nav.navigateForward(['home']);
