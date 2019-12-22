@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 
+import { AuthenticationGuard } from './guard/authentication.guard';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +27,8 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    AuthenticationGuard // 注册路由守卫
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,9 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ActionSheetController } from '@ionic/angular';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationStatus } from './enums/authentication-status.enum';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +42,9 @@ public appPages = [
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private actionSheetController: ActionSheetController
+    private actionSheetController: ActionSheetController,
+    private authenticationService: AuthenticationService,
+    private nav: NavController
   ) {
     this.initializeApp();
   }
@@ -48,6 +53,14 @@ public appPages = [
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.authenticationService.authenticationState.subscribe(state => {
+        console.log('Auth changed:', state);
+        if (state === AuthenticationStatus.LOING ) {
+          this.nav.navigateForward('user');
+        } else {
+          this.nav.navigateForward(['home']);
+        }
+      });
     });
   }
   async  logOut() {
